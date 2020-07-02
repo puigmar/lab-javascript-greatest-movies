@@ -49,17 +49,44 @@ function orderByYear(array) {
 };
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
-    let firstTwenty = array.filter((film, i) => {
-            if (i < 20) {
-                return film.title
-            }
-        })
-        .map(film => film.title)
-        .sort((a, b) => {
-            return a.localeCompare(b);
-        })
+    let newArray = JSON.parse(JSON.stringify(array))
+    let firstTwenty = newArray
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .filter((filmTitle, i) => {
+        if (i < 20) {
+          return filmTitle;
+        }
+      })
+      .map((item) => item.title)
     return firstTwenty;
-};
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+  }
+
+
+  // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+  function turnHoursToMinutes(array) {
+    let newNovies = JSON.parse(JSON.stringify(array));
+  
+    newNovies.map((film) => {
+      film.duration = stringToMinutes(film.duration);
+    });
+  
+    return newNovies;
+  }
+  
+  function stringToMinutes(timeString) {
+    let minutes = 0;
+    let stringMinutes = timeString;
+    `${stringMinutes}`.split(" ").forEach((item) => {
+      if (item.indexOf("h") != -1) {
+        minutes += parseInt(item) * 60;
+      } else {
+        minutes += parseInt(item);
+      }
+    });
+    return minutes;
+  }
+
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
