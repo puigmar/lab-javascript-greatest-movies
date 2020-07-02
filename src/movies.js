@@ -76,8 +76,7 @@ function orderAlphabetically(array) {
   
   function stringToMinutes(timeString) {
     let minutes = 0;
-    let stringMinutes = timeString;
-    `${stringMinutes}`.split(" ").forEach((item) => {
+    `${timeString}`.split(" ").forEach((item) => {
       if (item.indexOf("h") != -1) {
         minutes += parseInt(item) * 60;
       } else {
